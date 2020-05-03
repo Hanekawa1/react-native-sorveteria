@@ -1,13 +1,10 @@
 import React from 'react';
-
-import bgLogin from '../../assets/images/wallpaper.png';
-
 import Styles from './styles';
 import { ImageBackground } from 'react-native';
 
-function Wallpaper({ children }) {
+function Wallpaper({ children, image }) {
   return (
-    <ImageBackground style={Styles.pictured} source={bgLogin}>
+    <ImageBackground style={Styles.pictured} source={image}>
       {children}
     </ImageBackground>
   );
