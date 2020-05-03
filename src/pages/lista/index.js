@@ -1,15 +1,15 @@
 import React from 'react';
 import Wallpaper from '../../components/wallpaper';
+import bgGuest from '../../assets/images/wallpaperGuest.png';
 import { View, Text } from 'react-native';
-import bgAdmin from '../../assets/images/wallpaperAdmin.png';
 
 function Main({ navigation }) {
   return (
     <Wallpaper
-      image={bgAdmin}
+      image={bgGuest}
       children={
         <View>
-          <Text>Teste</Text>
+          <Text>Lista</Text>
         </View>
       }
     />

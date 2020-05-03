@@ -4,8 +4,9 @@ import Wallpaper from '../../components/wallpaper';
 import Logo from '../../components/logo';
 import UserImage from '../../assets/images/username.png';
 import PassImage from '../../assets/images/password.png';
+import bgLogin from '../../assets/images/wallpaper.png';
 
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, BackHandler } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 import Styles from './styles';
@@ -29,6 +30,25 @@ function Login({ navigation }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.navegar]);
 
+  useEffect(() => {
+    if (auth.navegarGuest === true) {
+      navigation.navigate('Lista');
+    }
+  }, [auth.navegarGuest, navigation]);
+
+  useEffect(() => {
+    const backAction = () => {
+      dispatch({ type: 'LOGOFF_GUEST' });
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   async function inicializar() {
     setIdeUsuario('');
     setSenha('');
@@ -42,8 +62,13 @@ function Login({ navigation }) {
     dispatch({ type: 'SIGN_IN_REQUEST', user });
   }
 
+  function navegarGuest() {
+    dispatch({ type: 'NAVEGAR_GUEST' });
+  }
+
   return (
     <Wallpaper
+      image={bgLogin}
       children={
         <>
           <Logo />
@@ -79,10 +104,12 @@ function Login({ navigation }) {
           </View>
 
           <View style={Styles.containerSignup}>
-            <Text style={Styles.text}>
-              <Image source={UserImage} style={Styles.inlineImg} />
-              Entrar como usuário convidado
-            </Text>
+            <TouchableOpacity onPress={() => navegarGuest()}>
+              <Text style={Styles.text}>
+                <Image source={UserImage} style={Styles.inlineImg} />
+                Entrar como usuário convidado
+              </Text>
+            </TouchableOpacity>
           </View>
         </>
       }

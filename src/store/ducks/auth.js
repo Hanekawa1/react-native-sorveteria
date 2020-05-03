@@ -7,6 +7,8 @@ const { Types, Creators } = createActions({
   signInFailure: ['user'],
   signInCancel: null,
   signInInicial: null,
+  navegarGuest: null,
+  logoffGuest: null,
 });
 
 export const AuthTypes = Types;
@@ -19,6 +21,7 @@ export const INITIAL_STATE = Immutable({
   senhaUsuario: '',
   navegar: false,
   usuario: null,
+  navegarGuest: false,
 });
 
 export const signInInicialReducer = (state) => {
@@ -65,10 +68,23 @@ export const signInFailureReducer = (state, { user }) => {
   });
 };
 
+export const guestUserReducer = (state) => {
+  return state.merge({
+    navegarGuest: true,
+  });
+};
+export const logoffGuestReducer = (state) => {
+  return state.merge({
+    navegarGuest: false,
+  });
+};
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SIGN_IN_REQUEST]: signInRequestReducer,
   [Types.SIGN_IN_SUCCESS]: signInSuccessReducer,
   [Types.SIGN_IN_FAILURE]: signInFailureReducer,
   [Types.SIGN_IN_CANCEL]: signInCancelReducer,
   [Types.SIGN_IN_INICIAL]: signInInicialReducer,
+  [Types.NAVEGAR_GUEST]: guestUserReducer,
+  [Types.LOGOFF_GUEST]: logoffGuestReducer,
 });
