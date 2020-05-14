@@ -6,6 +6,7 @@ const { Types, Creators } = createActions({
   cadastroRequest: ['produto'],
   cadastroSuccess: ['produto'],
   cadastroFailure: null,
+  carrinho: ['produtos'],
 });
 
 export const ProdutoTypes = Types;
@@ -37,8 +38,16 @@ export const cadastroFailureReducer = (state) => {
   });
 };
 
+export const carrinhoReducer = (state, produtos) => {
+  return state.merge({
+    navegar: true,
+    produtos: produtos,
+  });
+};
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CADASTRO_REQUEST]: cadastroRequestReducer,
   [Types.CADASTRO_SUCCESS]: cadastroSuccessReducer,
   [Types.CADASTRO_FAILURE]: cadastroFailureReducer,
+  [Types.CARRINHO]: carrinhoReducer,
 });
