@@ -16,20 +16,13 @@ const Styles = StyleSheet.create({
     paddingBottom: 30,
     paddingRight: 30,
   },
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#3368FF',
-    height: 80,
-    width: DEVICE_WIDTH - 330,
-    borderRadius: 100,
-    zIndex: 100,
-  },
-  containerCarrinho: {
-    flex: 1,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-start',
-    flexDirection: 'column-reverse',
+  title: {
+    color: 'black',
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+    marginTop: 20,
+    textAlign: 'center',
+    fontSize: 20,
   },
 });
 

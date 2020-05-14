@@ -4,6 +4,7 @@ import Login from '../pages/login';
 import Main from '../pages/main';
 import Lista from '../pages/lista';
 import Cadastro from '../pages/cadastro';
+import Carrinho from '../pages/carrinho';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -23,6 +24,16 @@ const MainPage = createStackNavigator({
     screen: Main,
     navigationOptions: ({ navigation }) => ({
       title: 'Main',
+      headerShown: false,
+    }),
+  },
+});
+
+const CarrinhoPage = createStackNavigator({
+  Carrinho: {
+    screen: Carrinho,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Carrinho',
       headerShown: false,
     }),
   },
@@ -54,6 +65,7 @@ const DrawerNavigatorMenu = createDrawerNavigator(
     Main: MainPage,
     Lista: ListaPage,
     Cadastro: CadastroPage,
+    Carrinho: CarrinhoPage,
   },
   {
     initialRouteName: 'Login',
